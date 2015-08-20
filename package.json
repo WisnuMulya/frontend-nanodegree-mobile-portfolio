@@ -1,0 +1,43 @@
+{
+  "devDependencies": {
+    "clean-css": "^3.3.9",
+    "html-minifier": "^0.7.2",
+    "http-server": "^0.8.0",
+    "imageoptim-cli": "^1.11.6",
+    "livereload": "^0.3.7",
+    "onchange": "^2.0.0",
+    "opener": "^1.4.1",
+    "parallelshell": "^2.0.0",
+    "uglify-js": "^2.4.24"
+  },
+  "engines": {
+    "node": "^0.12.7"
+  },
+  "private": true,
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "prebuild": "npm run clean && cp -r src/views dist",
+    "build": "npm run build:markups & npm run build:scripts & npm run build:images & npm run build:styles",
+    "prebuild:markups": "rm -f dist/*.html",
+    "build:markups": "for file in src/*.html; do html-minifier -o ${file/src/dist} --remove-comments --remove-comments-from-cdata --collapse-whitespace --minify-js --minify-css $file; done",
+    "watch:markups": "onchange src -- npm run build:markups",
+    "prebuild:styles": "rm -rf dist/css",
+    "build:styles": "mkdir dist/css && for file in src/css/*.css; do cleancss -o ${file/src/dist} $file; done",
+    "watch:styles": "onchange src/css -- npm run build:styles",
+    "prebuild:scripts": "rm -rf dist/js",
+    "build:scripts": "mkdir dist/js && for file in src/js/*.js; do uglifyjs $file -o ${file/src/dist}; done",
+    "watch:scripts": "onchange src/js -- npm run build:scripts",
+    "prebuild:images": "rm -rf dist/img & rm -rf dist/views/images",
+    "build:images": "parallelshell 'mkdir dist/img' 'mkdir dist/views/images' && parallelshell 'cp src/img/* dist/img' 'cp src/views/images/* dist/views/images' && imageoptim -d dist/img && imageoptim -d dist/views/images",
+    "watch:images": "onchange src/img -- npm run build:images",
+    "watch": "parallelshell 'npm run watch:markups' 'npm run watch:styles' 'npm run watch:scripts' 'npm run watch:images'",
+    "serve": "http-server -p 8080 dist/",
+    "open": "opener http://localhost:8080",
+    "livereload": "livereload dist/",
+    "dev": "npm run build && parallelshell 'npm run livereload' 'npm run serve' 'npm run open' 'npm run watch'"
+  }
+}
