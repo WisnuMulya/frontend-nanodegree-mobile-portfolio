@@ -38,6 +38,6 @@
     "serve": "http-server -p 8080 dist/",
     "open": "opener http://localhost:8080",
     "livereload": "livereload dist/",
-    "dev": "npm run build && parallelshell 'npm run livereload' 'npm run serve' 'npm run open' 'npm run watch'"
+    "dev": "parallelshell 'npm run livereload' 'npm run serve' 'npm run open' 'npm run watch'"
   }
 }
