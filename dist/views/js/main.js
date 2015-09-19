@@ -516,7 +516,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var rows = Math.ceil(window.screen.height / 256); // Set rows dynamically depending on user's window's height
+  var backgroundPizza = rows * cols; // Set the number of background pizzas
+  for (var i = 0; i < backgroundPizza; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
