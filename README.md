@@ -53,3 +53,5 @@ $> npm run dev
 1. Include 'use strict' in every function definitions.
 2. Use ```getElementsByClassName``` or ```getElementById``` instead of ```querySelectorAll``` or ```querySelector```.
 3. Saving array length in a local variable, so that the array's length property is not accessed at each iteration of a loop.
+4. Declare some variables outside loops to prevent it from being created every time the loop executed.
+5. Declare some variables created by making a DOM call outside loops so the loop only makes one DOM call.

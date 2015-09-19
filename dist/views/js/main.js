@@ -475,8 +475,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas"); // Declare variable outside the loop so the loop only makes one DOM call
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -514,8 +514,9 @@ function updatePositions() {
   // Variable bodyTop is added to prevent forced asynchronous layout
   var itemsLength = items.length; // Save array's length in a local variable to make a more efficient looping
   var bodyTop = document.body.scrollTop;
+  var phase; // Declare variable outside the loop to prevent it from being created every time the loop executed
   for (var i = 0; i < itemsLength; i++) {
-    var phase = Math.sin((bodyTop / 1250) + (i % 5));
+    phase = Math.sin((bodyTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -539,15 +540,17 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   var rows = Math.ceil(window.screen.height / 256); // Set rows dynamically depending on user's window's height
   var backgroundPizza = rows * cols; // Set the number of background pizzas
+  var elem; // Declare variable outside the loop to prevent it from being created every time the loop executed
+  var movingPizzas = document.getElementById("movingPizzas1"); // Declare variable outside the loop so the loop only makes one DOM call
   for (var i = 0; i < backgroundPizza; i++) {
-    var elem = document.createElement('img');
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem); // Use getElementById instead of querySelector
+    movingPizzas.appendChild(elem); // Use getElementById instead of querySelector
   }
   updatePositions();
 });
