@@ -48,3 +48,6 @@ $> npm run dev
 1. Refactor ```resizeImage``` function in main.js by eliminating ```determineDx``` function.
 2. Refactor ```updatePositions``` function in main.js by bringing ```document.body.scrollTop``` outside the loop.
 3. Reduce the number of background pizzas generated and calculate the number dynamically depending on the user's window's height. This changes are in line 519-521 in main.js.
+
+### Nitpicks
+1. Include 'use strict' in every function definitions
