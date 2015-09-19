@@ -51,3 +51,4 @@ $> npm run dev
 
 ### Nitpicks
 1. Include 'use strict' in every function definitions
+2. Use ```getElementsByClassName``` or ```getElementById``` instead of ```querySelectorAll``` or ```querySelector```.

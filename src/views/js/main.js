@@ -456,7 +456,7 @@ var resizePizzas = function(size) {
     }
 
     // Set new width to randomPizzaContainer elements
-    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer"); // Use getElementsByClassName instead of querySelectorAll
     for (var i = 0; i < randomPizzas.length; i++) {
       randomPizzas[i].style.width = newwidth + '%';
     }
@@ -509,7 +509,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover'); // Use getElementsByClassName instead of querySelectorAll
   // Variable bodyTop is added to prevent forced asynchronous layout
   var bodyTop = document.body.scrollTop;
   for (var i = 0; i < items.length; i++) {
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("#movingPizzas1").appendChild(elem); // Use getElementById instead of querySelector
   }
   updatePositions();
 });
