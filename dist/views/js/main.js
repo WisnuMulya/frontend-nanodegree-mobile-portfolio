@@ -457,7 +457,8 @@ var resizePizzas = function(size) {
 
     // Set new width to randomPizzaContainer elements
     var randomPizzas = document.getElementsByClassName("randomPizzaContainer"); // Use getElementsByClassName instead of querySelectorAll
-    for (var i = 0; i < randomPizzas.length; i++) {
+    var randomPizzasLength = randomPizzas.length; // Save array's length in a local variable to make a more efficient looping
+    for (var i = 0; i < randomPizzasLength; i++) {
       randomPizzas[i].style.width = newwidth + '%';
     }
   }
@@ -511,8 +512,9 @@ function updatePositions() {
 
   var items = document.getElementsByClassName('mover'); // Use getElementsByClassName instead of querySelectorAll
   // Variable bodyTop is added to prevent forced asynchronous layout
+  var itemsLength = items.length; // Save array's length in a local variable to make a more efficient looping
   var bodyTop = document.body.scrollTop;
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < itemsLength; i++) {
     var phase = Math.sin((bodyTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
@@ -545,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("#movingPizzas1").appendChild(elem); // Use getElementById instead of querySelector
+    document.getElementById("movingPizzas1").appendChild(elem); // Use getElementById instead of querySelector
   }
   updatePositions();
 });

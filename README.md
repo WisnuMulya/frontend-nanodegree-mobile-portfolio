@@ -50,5 +50,6 @@ $> npm run dev
 3. Reduce the number of background pizzas generated and calculate the number dynamically depending on the user's window's height. This changes are in line 519-521 in main.js.
 
 ### Nitpicks
-1. Include 'use strict' in every function definitions
+1. Include 'use strict' in every function definitions.
 2. Use ```getElementsByClassName``` or ```getElementById``` instead of ```querySelectorAll``` or ```querySelector```.
+3. Saving array length in a local variable, so that the array's length property is not accessed at each iteration of a loop.
